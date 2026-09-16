@@ -61,10 +61,10 @@ namespace NZWalks.API.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
-        public async Task<IActionResult> Update([FromRoute] Guid id, UpdateRegionRequestDto updateRegionRequestDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, UpdateWalkRequestDto updateWalkRequestDto)
         {
-            
-            var walkDomainModel = mapper.Map<Walk>(updateRegionRequestDto);
+
+            var walkDomainModel = mapper.Map<Walk>(updateWalkRequestDto);
             walkDomainModel = await walkRepository.UpdateAsync(id, walkDomainModel);
             if (walkDomainModel == null) return NotFound();
             return Ok(mapper.Map<WalkDto>(walkDomainModel));
